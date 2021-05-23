@@ -42,7 +42,8 @@ use Illuminate\Support\Facades\Session;
                     <td>{{$post->title}}</td>
                     <td>{{$post->body}}</td>
                     <td><a href="/posts/{{$post->id}}" class="btn btn-success">Details</a></td>
-                    <td><a href="/delete-post/{{$post->id}}" class="btn btn-danger">Details</a></td>
+                    <td><a href="/edit-post/{{$post->id}}" class="btn btn-secondary">Edit</a></td>
+                    <td><a href="/delete-post/{{$post->id}}" class="btn btn-danger">Delete</a></td>
                 </tr>
             @endforeach
 

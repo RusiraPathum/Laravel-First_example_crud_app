@@ -22,7 +22,7 @@ class PostController extends Controller
 
         $post->save();
 
-        return back()->with('post_created', 'Post has been Created Successfully');
+        return back()->with('post_created', 'Post has been Created Successfully!');
 
     }
 
@@ -49,4 +49,22 @@ class PostController extends Controller
         return back()->with('post_deleted', 'Post Has Been Deleted Successfully!');
 
     }
+
+    public function editPost($id){
+
+        $post = Post::find($id);
+        return view('edit-post',compact('post'));
+
+    }
+
+    public function updatePost(Request $request){
+
+        $post = Post::find($request->id);
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->save();
+        return back()->with('post_updated','Post has been update successfully!');
+
+    }
+
 }
