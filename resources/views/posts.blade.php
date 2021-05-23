@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>All Posts</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -19,6 +19,12 @@ use Illuminate\Support\Facades\Session;
 
 <section class="container mt-5">
     <h1>All Posts</h1> <a href="/add-post" class="btn btn-info">Add New</a>
+
+    @if(Session::has('post_deleted'))
+        <div class="mb-3 mt-3 alert alert-success" role="alert">
+            {{Session::get('post_deleted')}}
+        </div>
+    @endif
     <table class="table table-hover">
         <thead>
         <tr>
@@ -36,6 +42,8 @@ use Illuminate\Support\Facades\Session;
                     <td>{{$post->title}}</td>
                     <td>{{$post->body}}</td>
                     <td><a href="/posts/{{$post->id}}" class="btn btn-success">Details</a></td>
+                    <td><a href="/edit-post/{{$post->id}}" class="btn btn-secondary">Edit</a></td>
+                    <td><a href="/delete-post/{{$post->id}}" class="btn btn-danger">Delete</a></td>
                 </tr>
             @endforeach
 
