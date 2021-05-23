@@ -1,10 +1,8 @@
 <?php
-
 use Illuminate\Support\Facades\Session;
-
 ?>
 
-<!doctype html>
+    <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,24 +18,30 @@ use Illuminate\Support\Facades\Session;
 <body>
 
 <section class="container mt-5">
+    <h1>All Posts</h1> <a href="/add-post" class="btn btn-info">Add New</a>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Post Title</th>
+            <th>Post Description</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
 
-    @if(Session::has('post_created'))
-        <div class="alert alert-success" role="alert">
-            {{Session::get('post_created')}}
-        </div>
-    @endif
-    <form action="{{route('post.create')}}" method="POST">
-        @csrf
-        <div class="form-group">
-            <label for="email">Post Title</label>
-            <input type="text" class="form-control" placeholder="Enter Post Title" name="title" id="title">
-        </div>
-        <div class="form-group">
-            <label for="pwd">Post Description</label>
-            <textarea class="form-control" placeholder="Enter Post Description" name="body" id="body"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Add Post</button>
-    </form>
+            @foreach($posts as $post)
+                <tr>
+                    <td>{{$post->id}}</td>
+                    <td>{{$post->title}}</td>
+                    <td>{{$post->body}}</td>
+                    <td><a href="/posts/{{$post->id}}" class="btn btn-success">Details</a></td>
+                </tr>
+            @endforeach
+
+        </tbody>
+    </table>
+
 </section>
 
 <!-- jQuery library -->
