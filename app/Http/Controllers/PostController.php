@@ -28,7 +28,7 @@ class PostController extends Controller
 
     public function getPost(){
 
-        $posts = Post::orderBy('id', 'DESC')->get();
+        $posts = Post::orderBy('id')->get();
 
         return view('posts',compact('posts'));
 
@@ -39,6 +39,14 @@ class PostController extends Controller
         $post = Post::where('id', $id)->first();
 
         return view('single-post',compact('post'));
+
+    }
+
+    public function deletePost($id){
+
+        Post::where('id', $id)->delete();
+
+        return back()->with('post_deleted', 'Post Has Been Deleted Successfully!');
 
     }
 }
